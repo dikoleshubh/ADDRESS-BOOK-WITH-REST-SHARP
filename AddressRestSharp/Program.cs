@@ -10,7 +10,7 @@ namespace AddressRestSharp
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("Welcome to Address book");
+            Console.WriteLine("Welcome to Address book with Rest API");
         }
     }
 }
