@@ -86,6 +86,38 @@ namespace AddressTest
                 Assert.AreEqual(v.LastName, contact.LastName);
                 Console.WriteLine(response.Content);
             }
+
+        }
+        // UC3 Ability to update the phoneNo into the json file in json server
+
+        [TestMethod]
+        public void OnCallingPutAPI_ReturnContactObjects()
+        {
+            //Arrange
+            //Initialize the request for PUT to add new employee
+            RestRequest request = new RestRequest("/contacts/6", Method.PUT);
+            JsonObject jsonObj = new JsonObject();
+            jsonObj.Add("firstname", "baki");
+            jsonObj.Add("lastname", "Bata");
+            jsonObj.Add("phoneNo", "8777456345");
+            jsonObj.Add("address", "Wakanda");
+            jsonObj.Add("city", "Wakanda");
+            jsonObj.Add("state", "Maharashtra");
+            jsonObj.Add("zip", "3556547");
+            jsonObj.Add("email", "vs@gmail.com");
+            //Added parameters to the request object such as the content-type and attaching the jsonObj with the request
+            request.AddParameter("application/json", jsonObj, ParameterType.RequestBody);
+
+            //Act
+            IRestResponse response = client.Execute(request);
+
+            //Assert
+            Assert.AreEqual(HttpStatusCode.OK, response.StatusCode);
+            Contact contact = JsonConvert.DeserializeObject<Contact>(response.Content);
+            Assert.AreEqual("Shikhar", contact.FirstName);
+            Assert.AreEqual("Dhawan", contact.LastName);
+            Assert.AreEqual("535678", contact.Zip);
+            Console.WriteLine(response.Content);
         }
     }
 }
