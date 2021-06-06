@@ -103,7 +103,7 @@ namespace AddressTest
             jsonObj.Add("address", "Wakanda");
             jsonObj.Add("city", "Wakanda");
             jsonObj.Add("state", "Maharashtra");
-            jsonObj.Add("zip", "3556547");
+            jsonObj.Add("zip", "3456789");
             jsonObj.Add("email", "vs@gmail.com");
             //Added parameters to the request object such as the content-type and attaching the jsonObj with the request
             request.AddParameter("application/json", jsonObj, ParameterType.RequestBody);
@@ -114,9 +114,9 @@ namespace AddressTest
             //Assert
             Assert.AreEqual(HttpStatusCode.OK, response.StatusCode);
             Contact contact = JsonConvert.DeserializeObject<Contact>(response.Content);
-            Assert.AreEqual("Shikhar", contact.FirstName);
-            Assert.AreEqual("Dhawan", contact.LastName);
-            Assert.AreEqual("535678", contact.Zip);
+            Assert.AreEqual("Baki", contact.FirstName);
+            Assert.AreEqual("Bata", contact.LastName);
+            Assert.AreEqual("3456789", contact.Zip);
             Console.WriteLine(response.Content);
         }
     }
